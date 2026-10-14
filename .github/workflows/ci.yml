@@ -97,11 +97,13 @@ jobs:
           REDIS_HOST: 127.0.0.1
           REDIS_PORT: 6379
 
-      - name: 4. Test DB Migrations & Rollback
+      - name: 4. Test DB Migrations, Seed & Rollback
         run: |
           php artisan migrate --force
+          php artisan db:seed --force
           php artisan migrate:rollback --force
           php artisan migrate --force
+          php artisan db:seed --force
         env:
           DB_CONNECTION: pgsql
           DB_HOST: 127.0.0.1

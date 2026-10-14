@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\ApiResponse;
 use App\Services\Contracts\ExcelServiceInterface;
 use App\Services\Contracts\PdfServiceInterface;
 use App\Services\Contracts\QrCodeServiceInterface;
@@ -48,5 +49,10 @@ Route::prefix('demo')->group(function () {
         ];
 
         return $excelService->downloadArray($data, $headings, 'users_export.xlsx');
+    });
+
+    // 4. RBAC Protected Demo Route
+    Route::middleware(['auth', 'role:admin'])->get('/admin-only', function () {
+        return ApiResponse::success(['secret' => 'Confidential admin data'], 'Admin area accessed');
     });
 });
