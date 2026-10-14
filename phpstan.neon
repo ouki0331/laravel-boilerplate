@@ -1,0 +1,11 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+
+    # Rule levels: 0 (loose) to 9 (very strict). Level 5 is industry standard for Laravel projects.
+    level: 5
+
+    ignoreErrors:
